@@ -1,0 +1,36 @@
+//Comandos para linkiar de forma remota una carpeta al repositorio online 
+//Esto se hace una vez sola
+
+git config --global user.name "user_name"
+git config --global user.email "mail"
+mkdir algo2_tp0
+cd algo2_tp0
+git init
+
+//Comandos para agregar un archivo
+//git init
+//git add . //¿para agregar varios archivos?
+
+git add nombre_archivo
+git commit -m "Alguna descripcion" //(Usar comillas para la decripcion)
+git push origin master --force
+
+//Comando para actualizar la carpeta con el repositorio 
+git pull origin master
+
+//Comando para remover
+git rm archivo
+git commit -m "Lo borre porque si"
+git push origin master --force
+
+//Para ver si tenes algun archivo modificado pendiente de subir
+git status 
+
+//Branch
+//Para laburar en los archivos sin modificar los de otra rama
+//master -> Rama principal, codigo principal
+
+git branch nombre_rama 			//Crear nueva rama
+git checkout "nombre_rama" 		//Cambiar de rama
+
+git branch -D nombre_rama 		//Para borrar rama
