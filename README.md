@@ -11,3 +11,11 @@ git commit -m "first commit"
 git remote add origin https://github.com/matiassambrizzi/algo2_tp1.git
 git push -u origin master
 
+
+
+Para que se guarde la contra
+
+git config credential.helper store
+git push https://github.com/matiassambrizzi/algo2_tp1.git
+
+
