@@ -31,6 +31,8 @@ segmentTree::segmentTree(const array <dato> d){
 			j++;
 		}
 	}
+	node a(tree[2*j+1],tree[2*j+2]); //agrego el caso en el que j == 0
+	tree[j] = a;
 
 }
 
