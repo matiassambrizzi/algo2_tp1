@@ -1,5 +1,5 @@
-#ifndef DATA__H
-#define DATA__H
+#ifndef DATO__H
+#define DATO__H
 #include <iostream>
 
 using namespace std;
@@ -27,4 +27,5 @@ private:
 	bool 			exists;
 };
 
+#include "dato.cpp"
 #endif

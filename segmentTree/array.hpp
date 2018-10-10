@@ -9,12 +9,11 @@ using namespace std;
 
 template <class T>
 class array {
-
 public:
-						array();
-						array(int);
-						array(const array &);
-						~array();
+					array();
+					array(int);
+					array(const array &);
+					~array();
 	int 			get_size() const;
 	T 				get_value(int pos)const;
 	//void 			store(int pos, T data);
@@ -34,9 +33,6 @@ private:
 	T *p;
 	int _used_size;
 	int _alloc_size;
-
-
-
 };
 
 #include "array.cpp"

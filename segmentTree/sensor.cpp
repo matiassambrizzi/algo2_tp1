@@ -1,6 +1,10 @@
+#ifdef SENSOR__HPP
+
 #include <iostream>
-#include "sensor.hpp"
 #include "array.hpp"
+#include "dato.hpp"
+#include "sensor.hpp"
+#include "segmentTree.hpp"
 
 using namespace std;
 
@@ -116,3 +120,11 @@ bool sensor::get_data_value(int pos,double &val){
       return false;
     }
 }
+
+void sensor::buildSegmentTree(){
+  segmentTree auxTree(this->data);
+  tree = auxTree;
+}
+
+
+#endif

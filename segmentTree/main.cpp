@@ -1,9 +1,9 @@
 #include <iostream>
 #include "array.hpp"
-#include "sensor.hpp"
-#include "dato.hpp"
 #include "node.hpp"
+#include "sensor.hpp"
 #include "segmentTree.hpp"
+#include "dato.hpp"
 
 using namespace std;
 

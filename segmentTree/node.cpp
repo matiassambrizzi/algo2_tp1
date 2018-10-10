@@ -1,8 +1,8 @@
 #ifdef NODE__H
 
 #include <iostream>
-#include "array.hpp"
-#include "dato.hpp"
+//#include "dato.hpp"
+#include "node.hpp"
 	
 node::node(){
 	min = 0; max = 0; addsUp = 0; quantity = 0;

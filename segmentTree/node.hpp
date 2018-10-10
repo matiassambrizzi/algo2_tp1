@@ -2,6 +2,8 @@
 #define NODE__H
 #include <iostream>
 
+#include "dato.hpp"
+
 using namespace std;
 
 class node{

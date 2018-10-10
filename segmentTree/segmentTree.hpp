@@ -3,6 +3,8 @@
 #include <iostream>
 #include "node.hpp"
 #include "dato.hpp"
+#include "array.hpp"
+
 using namespace std;
 
 class segmentTree {
@@ -12,11 +14,11 @@ public:
 				segmentTree(const array <dato>);
 				~segmentTree();
 	int			treeSize(int);
-private:
-	array <node> tree; //en realidad va a ser del tipo nodo
-	//void		initializeSegmentTree(const array <dato>, int);
+	int			getTreeLength() const;
+	segmentTree & 	operator=(const segmentTree &);
 
-	//void		buildSegmentTree(array <dato>&,array <dato>, int init, int end)
+private:
+	array <node> tree; 
 };
 
 #include "segmentTree.cpp"
