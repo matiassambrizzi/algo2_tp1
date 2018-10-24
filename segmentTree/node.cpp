@@ -1,9 +1,15 @@
-#ifdef NODE__H
 
 #include <iostream>
+<<<<<<< HEAD
 //#include "dato.hpp"
 #include "node.hpp"
 	
+=======
+#include "array.hpp"
+#include "dato.hpp"
+#include "node.hpp"
+
+>>>>>>> 780d5fa51ff6472d083c085052fdcc3fdc09c213
 node::node(){
 	min = 0; max = 0; addsUp = 0; quantity = 0;
 	containsData = false;
@@ -15,6 +21,16 @@ node::node(double a, double b){
 	addsUp = a + b;
 	quantity = 2;
 	containsData = true;
+}
+
+node::node(double a){
+
+		min = a;
+		max = min;
+		addsUp = min;
+		quantity = 1;
+		containsData = true;
+
 }
 
 node::node(dato a){
@@ -65,7 +81,7 @@ node::node(node a, node b){
 		}
 		addsUp = a.addsUp + b.addsUp;
 		quantity = a.quantity + b.quantity;
-		containsData = true;	
+		containsData = true;
 	}
 }
 
@@ -131,6 +147,3 @@ bool node::isNodeUseful(){
 void node::setNodeUseful(bool useful){
 	containsData = useful;
 }
-
-
-#endif
