@@ -4,8 +4,8 @@ EXE = segmentTree
 
 all: segmentTree clean
 
-segmentTree: main.obj array.obj sensor.obj dato.obj segmentTree.obj
-	$(CC) $(CCFLAGS) -o $(EXE) main.obj array.obj sensor.obj dato.obj segmentTree.obj
+segmentTree: main.obj array.obj sensor.obj dato.obj
+	$(CC) $(CCFLAGS) -o $(EXE) main.obj array.obj sensor.obj dato.obj
 
 main.obj: main.cpp
 	$(CC) $(CCFLAGS)  -c main.cpp -o main.obj
@@ -18,9 +18,6 @@ sensor.obj: sensor.cpp sensor.hpp
 
 dato.obj: dato.cpp dato.hpp
 	$(CC) $(CCFLAGS)  -c dato.cpp -o dato.obj
-
-segmentTree.obj: segmentTree.cpp segmentTree.hpp
-	$(CC) $(CCFLAGS)  -c segmentTree.cpp -o segmentTree.obj
 
 runs:
 	./$(EXE)

@@ -75,7 +75,7 @@ bool sensor::query(int pos1, int &pos2, double &min, double &max, double &mean, 
 	int i=0;
   unused = 0;
 
-  while(data[pos1+unused].data_available() == false){
+  while(data[pos1+unused].dato_available() == false){
     if((pos1+unused) == (pos2))
       return false;
     unused++;
@@ -89,7 +89,7 @@ bool sensor::query(int pos1, int &pos2, double &min, double &max, double &mean, 
     pos2 = data.get_size() -1;
 
 	for(i = pos1; i<=pos2; i++){
-    if(data[i].data_available() == false){
+    if(data[i].dato_available() == false){
       unused++;
     }
     else{
@@ -108,7 +108,7 @@ bool sensor::query(int pos1, int &pos2, double &min, double &max, double &mean, 
 }
 
 bool sensor::get_data_value(int pos,double &val){
-    if(data[pos].data_available()){
+    if(data[pos].dato_available()){
       val = data[pos].get_dato();
       return true;
     }
