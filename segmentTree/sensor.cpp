@@ -1,10 +1,6 @@
-#ifdef SENSOR__HPP
-
 #include <iostream>
-#include "array.hpp"
-#include "dato.hpp"
 #include "sensor.hpp"
-#include "segmentTree.hpp"
+#include "array.hpp"
 
 using namespace std;
 
@@ -121,10 +117,19 @@ bool sensor::get_data_value(int pos,double &val){
     }
 }
 
-void sensor::buildSegmentTree(){
-  segmentTree auxTree(this->data);
-  tree = auxTree;
+node sensor::queryTree(int stIndex, int left, int right, int lo, int hi) {
+  if (left == lo && right == hi)
+    return tree[stIndex];
+    
+  int mid = (left + right) / 2;
+  if (lo > mid)
+    return queryTree(2*stIndex+1, mid+1, right, lo, hi);
+  if (hi <= mid)
+    return queryTree(2*stIndex, left, mid, lo, hi);
+    
+  node leftResult = queryTree(2*stIndex, left, mid, lo, mid);
+  node rightResult = queryTree(2*stIndex+1, mid+1, right, mid+1, hi);
+  node result(leftResult,rightResult);
+  //result.merge(leftResult, rightResult);
+  return result;
 }
-
-
-#endif

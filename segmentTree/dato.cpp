@@ -1,5 +1,3 @@
-#ifdef DATO__H
-
 #include <iostream>
 #include "dato.hpp"
 
@@ -101,5 +99,3 @@ bool dato::operator<=(const double &f){
 		return false;
 	}
 }
-
-#endif

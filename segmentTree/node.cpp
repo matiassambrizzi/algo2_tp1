@@ -1,15 +1,9 @@
 
 #include <iostream>
-<<<<<<< HEAD
-//#include "dato.hpp"
-#include "node.hpp"
-	
-=======
 #include "array.hpp"
 #include "dato.hpp"
 #include "node.hpp"
 
->>>>>>> 780d5fa51ff6472d083c085052fdcc3fdc09c213
 node::node(){
 	min = 0; max = 0; addsUp = 0; quantity = 0;
 	containsData = false;

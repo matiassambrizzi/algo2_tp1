@@ -1,12 +1,10 @@
 #include <iostream>
 #include "array.hpp"
+#include "sensor.hpp"
 #include "node.hpp"
 #include "dato.hpp"
 #include "segmentTree.hpp"
-<<<<<<< HEAD
-=======
 
->>>>>>> 780d5fa51ff6472d083c085052fdcc3fdc09c213
 
 segmentTree::segmentTree(){
 
@@ -38,13 +36,8 @@ segmentTree::segmentTree(const array <dato> d){
 		tree[start] = d[start];
 	}
 
-<<<<<<< HEAD
-	int end = start;
-	int j = (end-1)/2;
-=======
 	unsigned int end = start;
 	unsigned int j = (end-1)/2;
->>>>>>> 780d5fa51ff6472d083c085052fdcc3fdc09c213
 
 	while(j!=0){
 		if(j == end){
@@ -65,10 +58,6 @@ segmentTree::segmentTree(const array <dato> d){
 segmentTree::~segmentTree(){
 }
 
-int segmentTree::getTreeLength() const{
-	return tree.get_size();
-}
-
 int segmentTree::treeSize(int lengthData){
 	int i = 2;
 	while(i < lengthData){ //calculo la potencia de dos correspondiente
@@ -78,11 +67,6 @@ int segmentTree::treeSize(int lengthData){
 	i = 2*i -1;
 	return i;
 }
-<<<<<<< HEAD
-segmentTree & segmentTree::operator=(const segmentTree &a){
-	for(int i = 0; i<a.getTreeLength(); i++){
-		tree[i] = a.tree[i];
-=======
 
 //************************************ARMAR_ARBOL*****************************************//
 //La funcion tiene como parámetros un array, un index que se corresponde con el nodo al que
@@ -110,45 +94,7 @@ void segmentTree::buildSegmentTree(array <double> d,double index,double init,dou
 	node aux(tree[leftIndex],tree[rightIndex]);
 	tree[index] = aux;
 }
-//****************************************************************************************//
 
-/*
-void segmentTree::buildSegmentTree(array <dato> d){
-	initializeSegmentTree(d, lengthTree);
-
-
-	if(end  ==  init +1){
-
-	}
-	for(int i = init;i<end ;i = i+2 ){
-		//la posicion inicial en la que se va a guardar seria (init-1)/2
-		if(data[i].dato_available() == true && data[i+1].dato_available() == true){
-			if(data[i].get_dato()<data[i].get_dato()){
-				//aca habria que guardar en el node el minimo, maximo, suma y cantidad segun corresponda
-			}
-			else{
-				//idem anterior
-			}
-		}
-		else if(data[i].dato_available() == true && data[i+1].dato_available() == false){
-			//habria que guardar en el node como que maximo y minimo son el i
-		}
-		else if(data[i].dato_available() == false && data[i+1].dato_available() == true){
-			//habria que guardar en el node como que maximo y minimo son el i+1
-		}
->>>>>>> 780d5fa51ff6472d083c085052fdcc3fdc09c213
-	}
-	return *this;
+node & segmentTree::operator[](int pos){
+	return tree[pos];
 }
-
-<<<<<<< HEAD
-#endif
-=======
-void segmentTree::initializeSegmentTree(const array <dato> d, int lengthTree){
-	int start = (lengthTree+1)/2-1;
-	for(int i = start; i < lengthTree; i++){
-		tree[start] = d[start];
-	}
-}
-*/
->>>>>>> 780d5fa51ff6472d083c085052fdcc3fdc09c213
