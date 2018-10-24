@@ -36,8 +36,8 @@ node::node(dato a){
 		containsData = true;
 	}
 	else{
-	min = 0; max = 0; addsUp = 0; quantity = 0;
-	containsData = false;
+		min = 0; max = 0; addsUp = 0; quantity = 0;
+		containsData = false;
 	}
 }
 

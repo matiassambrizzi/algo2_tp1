@@ -15,7 +15,7 @@ class sensor
 private:
   string name;
   array <dato> data;
-  segmentTree       tree;
+  segmentTree tree;
 
 public:
                     sensor();
@@ -35,7 +35,6 @@ public:
   bool              query(int, int &, double &, double &, double &, int &);
   bool              get_data_value(int pos,double &val);
   node              queryTree(int, int, int, int, int);
-
 };
 
 #endif

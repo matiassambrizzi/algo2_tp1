@@ -8,16 +8,18 @@
 using namespace std;
 
 void display_attribute(node );
+void print_tree_max(segmentTree test);
 
 //*************************TEST_NODE_SEGMENTTREE***************************************//
 //En este archivo se realiza el testeo tanto de la clase nodo como el de SegmentTree.
 //En principio se realizan las pruebas por separado, luego se inculirá un menú para
 //poder elegir el testeo se re requiera.
 //************************************************************************************+//
+
 int main(void)
 {
 
-  //****Testeo del contructor por defecto****//
+//***********************************TESTE_CLASE_NODO+++++++*****************************//
 /*
   cout << "Se crea un nodo con el contructor por defecto" << endl;
   node test_node;
@@ -33,14 +35,18 @@ int main(void)
   display_attribute(test_node2);
 */
 
-  array <double> v;
-  for(double i=0;i<8;i++)
+//***********************************TESTE_CLASE_SEGMENT_TREE*****************************//
+  array <dato> v;
+
+  int n = 6;
+  for(double i = 0;i < n;i++)
     v.push_back(i);
 
   cout << v << endl;
-  segmentTree test(v,8);
+  segmentTree test(v,n);
 
-  for(int i = 0;i < (2*8) - 1;i++)
+  int m = test.treeSize(n);
+  for(int i = 0;i <(2*m)-1;i++)
     display_attribute(test.getNode(i));
 
   return 0;
@@ -49,13 +55,13 @@ int main(void)
 
 void display_attribute(node test_node)
 {
-  double min = test_node.getMax();
-  double max = test_node.getMin();
+  double max = test_node.getMax();
+  double min = test_node.getMin();
   double adds = test_node.getAddsUp();
   double quant = test_node.getQuantity();
 
   cout << "Se muestran por pantalla los atributos" << endl;
-  cout << "El mínimo es: " << min << endl;
+  cout << "El mínimo es: " << min << "\t";
   cout << "El máximo es: " << max << endl;
   cout << "AddsUp: " << adds << endl;
   cout << "La cantidad: " << quant << endl;

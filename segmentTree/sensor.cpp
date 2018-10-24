@@ -1,6 +1,8 @@
 #include <iostream>
 #include "sensor.hpp"
 #include "array.hpp"
+#include "node.hpp"
+#include "segmentTree.hpp"
 
 using namespace std;
 
@@ -117,16 +119,17 @@ bool sensor::get_data_value(int pos,double &val){
     }
 }
 
+
 node sensor::queryTree(int stIndex, int left, int right, int lo, int hi) {
   if (left == lo && right == hi)
     return tree[stIndex];
-    
+
   int mid = (left + right) / 2;
   if (lo > mid)
     return queryTree(2*stIndex+1, mid+1, right, lo, hi);
   if (hi <= mid)
     return queryTree(2*stIndex, left, mid, lo, hi);
-    
+
   node leftResult = queryTree(2*stIndex, left, mid, lo, mid);
   node rightResult = queryTree(2*stIndex+1, mid+1, right, mid+1, hi);
   node result(leftResult,rightResult);
