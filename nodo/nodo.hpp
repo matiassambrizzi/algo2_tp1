@@ -1,5 +1,6 @@
-#ifndef ARRAY__H
-#define NODO__H
+#ifndef NODO__HPP
+#define NODO__HPP
+
 #include <iostream>
 
 using namespace std;
@@ -7,11 +8,11 @@ using namespace std;
 class nodo {
 
 public:
-				nodo();
-				nodo(double, double);
-				nodo(node, node);
-				node(bool);
-				~nodo();
+						nodo();
+						nodo(double, double);
+						nodo(nodo, nodo);
+						nodo(bool);
+						~nodo();
 	double		getMin();
 	double		getMax();
 	double		getAddsUp();
@@ -29,5 +30,4 @@ private:
 	bool containsData;
 };
 
-#include "nodo.cpp"
 #endif

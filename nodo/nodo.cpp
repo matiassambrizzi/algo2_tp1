@@ -1,9 +1,8 @@
-#ifdef NODO__H
-
 #include <iostream>
 #include "array.hpp"
 #include "dato.hpp"
-	
+#include "nodo.hpp"
+
 nodo::nodo(){
 	min = 0; max = 0; addsUp = 0; quantity = 0;
 	containsData = false;
@@ -51,7 +50,7 @@ nodo(node a, node b){
 		}
 		addsUp = a.addsUp + b.addsUp;
 		quantity = a.quantity + b.quantity;
-		containsData = true;	
+		containsData = true;
 	}
 }
 
@@ -94,6 +93,3 @@ bool isNodeUseful(){
 void setNodeUseful(bool useful){
 	containsData = useful;
 }
-
-
-#endif
