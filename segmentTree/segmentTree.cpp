@@ -5,14 +5,53 @@
 #include "sensor.hpp"
 #include "node.hpp"
 #include "dato.hpp"
+/*
+Ideas para las consultas:
 
+nodo getValue(int padre,int principio, int final, int consultaInit, int consultaFin)
+{
+	//Principio: Comienzo del array
+	//Final: Final del array
+	//Caso base: la consulta esta entre el principio y final del array entonces devuelvo el nodo
+
+	if(principio == consultaInit && final == consultaFin)
+		return tree[padre];
+
+	int medio = (principio + final)/2;
+
+	if(consultaInit > medio) // La cnsulta inicial puede ser mayor q el medio??????
+		return getValue(2*padre+2, medio+1, final,consultaInit,consultaFin);
+	if(consultaFin<=medio)
+		reutrn getValue(2*padre+1, principio,medio,consultaInit,consultaFin);
+
+//Si no estoy en ninguno de los casasos anteriores entonces
+//Combino dos nodos
+	node leftResult = getValue(2*stIndex+1, left, mid, lo, mid);
+	node rightResult = getValue(2*stIndex+2, mid+1, right, mid+1, hi);
+	node result;
+	result.merge(leftResult, rightResult); //Hay que mergear los resisltados de alguna forma,
+	return result;
+
+
+}
+*/
 segmentTree::segmentTree(){
+
 }
 
+node segmentTree::getNode(int n)
+{
+	return tree[n];
+}
 segmentTree::segmentTree(const array <dato> d){
+
 	int lengthTree = this->treeSize(d.get_size());
+
 	array <node> tree(lengthTree);
+
 	int start = (lengthTree+1)/2-1;
+
+	//Aca me parece que tiene q ser menor o igual a lengthTree
 	for(int i = start; i < lengthTree; i++){
 		tree[start] = d[start];
 	}
@@ -64,7 +103,7 @@ void segmentTree::buildSegmentTree(array <dato> d){
 			}
 			else{
 				//idem anterior
-			}			
+			}
 		}
 		else if(data[i].dato_available() == true && data[i+1].dato_available() == false){
 			//habria que guardar en el node como que maximo y minimo son el i

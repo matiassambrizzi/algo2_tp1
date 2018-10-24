@@ -3,7 +3,7 @@
 #include <iostream>
 #include "array.hpp"
 #include "dato.hpp"
-	
+
 node::node(){
 	min = 0; max = 0; addsUp = 0; quantity = 0;
 	containsData = false;
@@ -65,7 +65,7 @@ node::node(node a, node b){
 		}
 		addsUp = a.addsUp + b.addsUp;
 		quantity = a.quantity + b.quantity;
-		containsData = true;	
+		containsData = true;
 	}
 }
 

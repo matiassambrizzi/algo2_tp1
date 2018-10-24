@@ -11,6 +11,7 @@ public:
 				segmentTree();
 				segmentTree(const array <dato>);
 				~segmentTree();
+	node			getNode(int);
 	int			treeSize(int);
 private:
 	array <node> tree; //en realidad va a ser del tipo nodo
