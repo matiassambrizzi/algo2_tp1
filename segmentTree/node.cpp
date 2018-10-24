@@ -1,8 +1,8 @@
-#ifdef NODE__H
 
 #include <iostream>
 #include "array.hpp"
 #include "dato.hpp"
+#include "node.hpp"
 
 node::node(){
 	min = 0; max = 0; addsUp = 0; quantity = 0;
@@ -15,6 +15,16 @@ node::node(double a, double b){
 	addsUp = a + b;
 	quantity = 2;
 	containsData = true;
+}
+
+node::node(double a){
+
+		min = a;
+		max = min;
+		addsUp = min;
+		quantity = 1;
+		containsData = true;
+
 }
 
 node::node(dato a){
@@ -131,6 +141,3 @@ bool node::isNodeUseful(){
 void node::setNodeUseful(bool useful){
 	containsData = useful;
 }
-
-
-#endif

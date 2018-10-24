@@ -1,5 +1,5 @@
-#ifndef NODE__H
-#define NODE__H
+#ifndef NODE__HPP
+#define NODE__HPP
 #include <iostream>
 
 using namespace std;
@@ -34,5 +34,4 @@ private:
 	bool containsData;
 };
 
-#include "node.cpp"
 #endif

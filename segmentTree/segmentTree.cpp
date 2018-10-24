@@ -1,42 +1,22 @@
-#ifdef SEGMENT_TREE__H
-
 #include <iostream>
 #include "array.hpp"
 #include "sensor.hpp"
 #include "node.hpp"
 #include "dato.hpp"
-/*
-Ideas para las consultas:
-
-nodo getValue(int padre,int principio, int final, int consultaInit, int consultaFin)
-{
-	//Principio: Comienzo del array
-	//Final: Final del array
-	//Caso base: la consulta esta entre el principio y final del array entonces devuelvo el nodo
-
-	if(principio == consultaInit && final == consultaFin)
-		return tree[padre];
-
-	int medio = (principio + final)/2;
-
-	if(consultaInit > medio) // La cnsulta inicial puede ser mayor q el medio??????
-		return getValue(2*padre+2, medio+1, final,consultaInit,consultaFin);
-	if(consultaFin<=medio)
-		reutrn getValue(2*padre+1, principio,medio,consultaInit,consultaFin);
-
-//Si no estoy en ninguno de los casasos anteriores entonces
-//Combino dos nodos
-	node leftResult = getValue(2*stIndex+1, left, mid, lo, mid);
-	node rightResult = getValue(2*stIndex+2, mid+1, right, mid+1, hi);
-	node result;
-	result.merge(leftResult, rightResult); //Hay que mergear los resisltados de alguna forma,
-	return result;
+#include "segmentTree.hpp"
 
 
-}
-*/
 segmentTree::segmentTree(){
 
+}
+
+segmentTree::segmentTree(array <double> arr, double quant)
+{
+	//Falta poner que si el largo no es 2^n agregue datos no existentes
+	array <node> aux(2*quant - 1);
+	tree = aux;
+
+	buildSegmentTree(arr,0,0,quant-1);
 }
 
 node segmentTree::getNode(int n)
@@ -56,7 +36,7 @@ segmentTree::segmentTree(const array <dato> d){
 		tree[start] = d[start];
 	}
 
-	int end = start;
+	unsigned int end = start;
 	unsigned int j = (end-1)/2;
 
 	while(j!=0){
@@ -87,6 +67,35 @@ int segmentTree::treeSize(int lengthData){
 	i = 2*i -1;
 	return i;
 }
+
+//************************************ARMAR_ARBOL*****************************************//
+//La funcion tiene como parámetros un array, un index que se corresponde con el nodo al que
+//pertenece el dato y el inicio y fin del array que se esta evaluando
+void segmentTree::buildSegmentTree(array <double> d,double index,double init,double final)
+{
+	//********CASO_BASE*****************//
+	if(init == final)
+	{
+		node aux1(d[init]);
+		tree[index] = aux1;           //Aca hay que identificar que este nodo es una hoja
+		return;
+	}
+	//********FIN_CASO_BASE*************//
+
+	int mid = (init + final)/2; 			//Se calcula el medio para dividir el array
+	double leftIndex = 2*index + 1;			//Indices de los hijos izquierdo y derecho
+	double rightIndex = 2*index + 2;
+
+	//Luego se realizan las llamadas recursivas
+	buildSegmentTree(d,leftIndex,init,mid);
+	buildSegmentTree(d,rightIndex,mid+1,final);
+
+	//Por último se tendrá que implementar una función para fusionar dos nodos
+	node aux(tree[leftIndex],tree[rightIndex]);
+	tree[index] = aux;
+}
+//****************************************************************************************//
+
 /*
 void segmentTree::buildSegmentTree(array <dato> d){
 	initializeSegmentTree(d, lengthTree);
@@ -121,4 +130,3 @@ void segmentTree::initializeSegmentTree(const array <dato> d, int lengthTree){
 	}
 }
 */
-#endif
