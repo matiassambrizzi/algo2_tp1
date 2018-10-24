@@ -10,68 +10,60 @@ segmentTree::segmentTree(){
 
 }
 
-segmentTree::segmentTree(array <double> arr, double quant)
+//********************************Constructor************************************//
+//Este contructor recibe un array de datos y la cantidad
+//Si la cantidad no es multiplo de 2^n se agregaran datos
+//inválidos para poder generar un arbol binario completo
+segmentTree::segmentTree(array <dato> arr, double quant)
 {
-	//Falta poner que si el largo no es 2^n agregue datos no existentes
-	array <node> aux(2*quant - 1);
+
+	int q = treeSize(quant);
+	array <dato> aux1(q);
+
+	for(int i = 0;i < quant;i++){
+		aux1[i] = arr[i];
+	}
+
+	array <node> aux(2*q - 1);
 	tree = aux;
 
-	buildSegmentTree(arr,0,0,quant-1);
+	buildSegmentTree(aux1,0,0,q-1);
 }
+//*******************************************************************************//
 
+//********************************DESTRUCTOR************************************//
+segmentTree::~segmentTree()
+{
+
+}
+//**************************************************++++++++++++++++++++++++++++//
+
+//************************************Tamaño_del_arbol*****************************************//
+//Esta funcion devuelve el tamaño del arbol
+int segmentTree::treeSize(int lengthData){
+	int f = 2;
+	int i=1;
+	while(i < lengthData){ //calculo la potencia de dos correspondiente
+		i = i*f;
+	}
+	//el segment tree sera de largo 2*i-1, por lo tanto:
+	//i = 2*i -1;
+	return i;
+}
+//*********************************************************************************************//
+
+//************************************Get_Node*****************************************//
 node segmentTree::getNode(int n)
 {
 	return tree[n];
 }
-segmentTree::segmentTree(const array <dato> d){
+//*************************************************************************************//
 
-	int lengthTree = this->treeSize(d.get_size());
-
-	array <node> tree(lengthTree);
-
-	int start = (lengthTree+1)/2-1;
-
-	//Aca me parece que tiene q ser menor o igual a lengthTree
-	for(int i = start; i < lengthTree; i++){
-		tree[start] = d[start];
-	}
-
-	unsigned int end = start;
-	unsigned int j = (end-1)/2;
-
-	while(j!=0){
-		if(j == end){
-			end =  (end-1)/2;
-			j = (end-1)/2;
-		}
-		else{
-			node a(tree[2*j+1],tree[2*j+2]);
-			tree[j] = a;
-			j++;
-		}
-	}
-	node a(tree[2*j+1],tree[2*j+2]); //agrego el caso en el que j == 0
-	tree[j] = a;
-
-}
-
-segmentTree::~segmentTree(){
-}
-
-int segmentTree::treeSize(int lengthData){
-	int i = 2;
-	while(i < lengthData){ //calculo la potencia de dos correspondiente
-		i = i*i;
-	}
-	//el segment tree sera de largo 2*i-1, por lo tanto:
-	i = 2*i -1;
-	return i;
-}
 
 //************************************ARMAR_ARBOL*****************************************//
 //La funcion tiene como parámetros un array, un index que se corresponde con el nodo al que
 //pertenece el dato y el inicio y fin del array que se esta evaluando
-void segmentTree::buildSegmentTree(array <double> d,double index,double init,double final)
+void segmentTree::buildSegmentTree(array <dato> d,double index,double init,double final)
 {
 	//********CASO_BASE*****************//
 	if(init == final)
@@ -96,6 +88,12 @@ void segmentTree::buildSegmentTree(array <double> d,double index,double init,dou
 }
 //****************************************************************************************//
 
+node & segmentTree::operator[](int pos){
+	return tree[pos];
+}
+
+
+//*********************************DESACTUALIZADO****************************************//
 /*
 void segmentTree::buildSegmentTree(array <dato> d){
 	initializeSegmentTree(d, lengthTree);
@@ -129,4 +127,37 @@ void segmentTree::initializeSegmentTree(const array <dato> d, int lengthTree){
 		tree[start] = d[start];
 	}
 }
+
+segmentTree::segmentTree(const array <dato> d){
+
+	int lengthTree = this->treeSize(d.get_size());
+
+	array <node> tree(lengthTree);
+
+	int start = (lengthTree+1)/2-1;
+
+	//Aca me parece que tiene q ser menor o igual a lengthTree
+	for(int i = start; i < lengthTree; i++){
+		tree[start] = d[start];
+	}
+
+	unsigned int end = start;
+	unsigned int j = (end-1)/2;
+
+	while(j!=0){
+		if(j == end){
+			end =  (end-1)/2;
+			j = (end-1)/2;
+		}
+		else{
+			node a(tree[2*j+1],tree[2*j+2]);
+			tree[j] = a;
+			j++;
+		}
+	}
+	node a(tree[2*j+1],tree[2*j+2]); //agrego el caso en el que j == 0
+	tree[j] = a;
+
+}
+
 */

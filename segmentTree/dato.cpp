@@ -32,7 +32,10 @@ double dato::get_dato() const{
 	//	oss
 }
 
-
+void dato::set_dato(double d,bool a){
+	measure = d;
+	exists = a;
+}
 
 void dato::set_dato(double d){
 	measure = d;

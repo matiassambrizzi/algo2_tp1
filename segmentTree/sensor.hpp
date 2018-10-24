@@ -3,6 +3,8 @@
 #include <iostream>
 #include "array.hpp"
 #include "dato.hpp"
+#include "node.hpp"
+#include "segmentTree.hpp"
 
 using namespace std;
 #define INVALID_VALUE -274
@@ -13,6 +15,7 @@ class sensor
 private:
   string name;
   array <dato> data;
+  segmentTree tree;
 
 public:
                     sensor();
@@ -30,7 +33,8 @@ public:
   void              print(ostream &os);
   friend ostream& operator<<(ostream&,const sensor &);
   bool              query(int, int &, double &, double &, double &, int &);
-  bool            get_data_value(int pos,double &val);
+  bool              get_data_value(int pos,double &val);
+  node              queryTree(int, int, int, int, int);
 };
 
 #endif
