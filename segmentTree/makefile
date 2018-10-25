@@ -8,11 +8,11 @@ EXE_TEST_SENSOR = testSensor
 
 all: segmentTree clean
 
-#*****************************PROGRAMA_PRINCPIAL**************************#
+#*****************************SEGMENT_TREE********************************************#
 segmentTree: main.obj array.obj sensor.obj dato.obj segmentTree.obj node.obj
 	$(CC) $(CCFLAGS) -o $(EXE) main.obj array.obj sensor.obj dato.obj segmentTree.obj node.obj
 
-#*****************************TESTEO_CLASE_NODO**************************#
+#*****************************TESTEO_CLASE_NODO****************************************#
 testNode: test_node.obj dato.obj array.obj node.obj
 	$(CC) $(CCFLAGS) -o $(EXE_TEST_NODE) test_node.obj dato.obj array.obj node.obj
 
@@ -20,11 +20,11 @@ testNode: test_node.obj dato.obj array.obj node.obj
 testSegmentTree:	test_segment_tree.obj dato.obj array.obj node.obj segmentTree.obj
 	$(CC) $(CCFLAGS) -o $(EXE_TEST_SEGMENT) test_segment_tree.obj dato.obj array.obj node.obj segmentTree.obj
 
-#*****************************CLASE_SENSOR**************************#
+#*****************************CLASE_SENSOR*********************************************#
 testSensor:	test_sensor.obj dato.obj array.obj node.obj segmentTree.obj sensor.obj
 	$(CC) $(CCFLAGS) -o $(EXE_TEST_SENSOR) test_sensor.obj dato.obj array.obj node.obj segmentTree.obj sensor.obj
 
-#*****************************ARCHIVOS.OBJ**************************#
+#*****************************ARCHIVOS.OBJ*********************************************#
 test_sensor.obj: test_sensor.cpp
 	$(CC) $(CCFLAGS)  -c test_sensor.cpp -o test_sensor.obj
 

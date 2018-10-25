@@ -29,8 +29,8 @@ int main (void)
         cout << "Cargar sensor";
         cout << endl;
         array <dato> aux;
-        for(int i = 0;i<15;i++)
-          aux.push_back(i);
+        for(int i = 0;i<14;i++)
+          aux.push_back(i+100);
 
         cout << "Vector de carga:";
         cout << endl;
@@ -63,7 +63,7 @@ int main (void)
         cout << endl;
         int init,end;
         if(cin >> init && cin >> end){
-          aux_node = s.queryTree(0,0,19,init,end);
+          aux_node = s.queryTree(0,0,16,init,end-1);
         }
         cout << "Consulta: ";
         cout << aux_node;
