@@ -84,7 +84,7 @@ clear:
 git_push:
 	git add .
 	git commit -m "Modificaciones"
-	git push origin master --force
+	git push origin Testing --force
 
 git_pull:
 	git pull origin master
