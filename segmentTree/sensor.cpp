@@ -21,6 +21,7 @@ sensor::sensor(string n, array<dato> d)
     name = n;
 }
 
+
 sensor::sensor(const sensor &d)
 {
   data = d.data;
@@ -126,13 +127,24 @@ node sensor::queryTree(int stIndex, int left, int right, int lo, int hi) {
 
   int mid = (left + right) / 2;
   if (lo > mid)
-    return queryTree(2*stIndex+1, mid+1, right, lo, hi);
+    return queryTree(2*stIndex+2, mid+1, right, lo, hi);
   if (hi <= mid)
-    return queryTree(2*stIndex, left, mid, lo, hi);
+    return queryTree(2*stIndex+1, left, mid, lo, hi);
 
-  node leftResult = queryTree(2*stIndex, left, mid, lo, mid);
-  node rightResult = queryTree(2*stIndex+1, mid+1, right, mid+1, hi);
+  node leftResult = queryTree(2*stIndex+1, left, mid, lo, mid);
+  node rightResult = queryTree(2*stIndex+2, mid+1, right, mid+1, hi);
+
   node result(leftResult,rightResult);
-  //result.merge(leftResult, rightResult);
+
   return result;
+}
+
+void sensor::loadTree(){
+  segmentTree aux(this->data, (this->data).get_size());
+  this->tree = aux;
+}
+
+segmentTree sensor::get_tree()
+{
+  return tree;
 }

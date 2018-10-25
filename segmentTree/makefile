@@ -3,6 +3,7 @@ CC = g++
 EXE = segmentTree
 EXE_TEST_NODE = testNode
 EXE_TEST_SEGMENT = testSegment
+EXE_TEST_SENSOR = testSensor
 
 
 all: segmentTree clean
@@ -19,7 +20,14 @@ testNode: test_node.obj dato.obj array.obj node.obj
 testSegmentTree:	test_segment_tree.obj dato.obj array.obj node.obj segmentTree.obj
 	$(CC) $(CCFLAGS) -o $(EXE_TEST_SEGMENT) test_segment_tree.obj dato.obj array.obj node.obj segmentTree.obj
 
+#*****************************CLASE_SENSOR**************************#
+testSensor:	test_sensor.obj dato.obj array.obj node.obj segmentTree.obj sensor.obj
+	$(CC) $(CCFLAGS) -o $(EXE_TEST_SENSOR) test_sensor.obj dato.obj array.obj node.obj segmentTree.obj sensor.obj
+
 #*****************************ARCHIVOS.OBJ**************************#
+test_sensor.obj: test_sensor.cpp
+	$(CC) $(CCFLAGS)  -c test_sensor.cpp -o test_sensor.obj
+
 test_segment_tree.obj: test_segment_tree.cpp
 	$(CC) $(CCFLAGS)  -c test_segment_tree.cpp -o test_segment_tree.obj
 
@@ -54,6 +62,9 @@ run_node_test:
 
 run_segment_test:
 	./$(EXE_TEST_SEGMENT)
+
+run_sensor_test:
+	./$(EXE_TEST_SENSOR)
 
 TestValgrind:
 	valgrind --leak-check=full ./$(EXE)

@@ -23,6 +23,7 @@ public:
                     sensor(const sensor &);
                     ~sensor();
   string            get_name() const;
+  segmentTree       get_tree();
   array <dato>    get_data() const;
   void              set_name(string);
   void              set_data(array<dato>);
@@ -35,6 +36,7 @@ public:
   bool              query(int, int &, double &, double &, double &, int &);
   bool              get_data_value(int pos,double &val);
   node              queryTree(int, int, int, int, int);
+  void              loadTree();
 };
 
 #endif
