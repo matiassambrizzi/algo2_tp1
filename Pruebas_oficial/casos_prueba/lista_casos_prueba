@@ -1,0 +1,43 @@
+Bad Data Files
+	Formato:
+	1 - Sensor faltante
+	2 - Dato extra
+	3 - Dato de menos
+	4 - No está el archivo
+	
+	Contenido:
+	1 - Letra por Numero
+	2 - Simbolos por numeros
+	3 - Numero con dos puntos
+	4 - Numero que es un punto
+	5 - Numero con letra después
+	6 - Numero con simbolos invalidos después
+	
+Bad Query Files
+	Formato:
+	1- Dato extra
+	2- Dato de menos
+	3- No está el archivo
+	
+	Contenido:
+	1 - Campo vacío
+	2 - Letra por Numero
+	3 - Simbolos por numeros
+	4 - Numero con dos puntos
+	5 - Numero que es un punto
+	6 - Campos de más
+	7 - Campos de menos
+	
+Bad output file
+	- File existe y está abierto
+	
+Good Queries
+	1 - Solo nombres la base de datos
+	2 - Archivo de data sin nada
+	3 - Solo mediciones vacías
+	4 - Algunas mediciones vacías, otras no + Unknown ID
+	5 - tiempos sin sentido -> resultados inesperados? error?
+	6 - 2 sensores con el mismo nombre
+	
+	
+	

@@ -1,0 +1,24 @@
+,,,,,           //comas de mas   -> NO DATA
+,               //comas de menos -> BAD QUERY
+,,              //cantidad de comas necesarias pero sin valores en parametros -> NO DATA
+    ,   ,       //cantidad de comas necesarias, sin valores y con tabulaciones -> NO DATA
+a,b,c           //letras en vez de numeros  -> BAD QUERY  
+                //linea vacia   -> No hace nada, sigue de largo
+,0.5,5          //numero decimal en primer parametro  -> BAD QUERY
+,2,0.5          //numero decimal en segundo parametro (rango inferior>rango superior) -> NO DATA
+,1,1            //mismo rango   -> NO DATA
+Sensor,1,8      //nombre de sensor desconocido -> UNKNOW ID
+,   2,     8    //espacios entre valores -> Olvida los espacios y hace el cálculo
+,?,-            //signos de puntuacion -> BAD QUERY
+,3,4,5          //parametro extra ->Toma los parámetros que necesita y se olvida del último
+,2              //parametro de menos ->BAD QUERY
+CPU,5,          //falta ultimo parametro -> BAD QUERY
+,0,500          //tomo rango mayor a la cantidad de elementos -> calcula hasta el último valor del arreglo del sensor
+,-1,380         //numero negativo en parametro -> BAD QUERY
+,380,-1         //rango no permitido -> NO DATA
+,200,100        //rango final menor que inicial -> NO DATA
+CPU12           //no hay comas ->BAD QUERY
+CPU,400,500     //rangos inicial y final superiores a la cantidad total de elementos en el sensor -> NO DATA
+GPU Thermal Diode,0,380 //el ultimo sensor nos habia dado problemas tanto por los espacios en el nombre, como por el hecho
+                        //de ser el que se encuentra en el final de la linea(aparicion de \r) -> Calcula los valores
+,0;5            //cambio coma por punto y coma -> BAD QUERY
