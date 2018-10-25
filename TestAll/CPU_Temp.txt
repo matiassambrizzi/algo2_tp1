@@ -1,0 +1,5 @@
+CPU Package,CPU,Motherboard,GPU Thermal Diode
+31,34,27,31
+24.3,34,27,31
+19.1,34,27,31
+22.5,34,27,31

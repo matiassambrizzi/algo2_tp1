@@ -1,0 +1,6 @@
+GPU Utilization [%], 1,300   
+GPU D3D Usage [%], 1,5  
+caracas,4,7
+
+GPU Utilization [%], 1,15   
+
