@@ -23,8 +23,10 @@ public:
 	void		setQuantity(int);
 	bool		isNodeUseful();
 	void		setNodeUseful(bool);
+	friend ostream & operator<<(ostream &os,const node & n);
 	node & operator=(const node &);
 	node & operator=(const dato &);
+
 
 
 

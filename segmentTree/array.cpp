@@ -187,7 +187,7 @@ ostream & operator<<(ostream &os,const array<T> & arr)
 	for (int i = 0;i<(arr._used_size)-1;++i)
 	{
 		os << arr[i];
-		os << ',';
+		os << ' ';
 	}
 	os << arr[(arr._used_size)-1];
 

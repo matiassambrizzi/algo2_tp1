@@ -93,6 +93,7 @@ node & segmentTree::operator[](int pos){
 }
 
 
+
 //*********************************DESACTUALIZADO****************************************//
 /*
 void segmentTree::buildSegmentTree(array <dato> d){

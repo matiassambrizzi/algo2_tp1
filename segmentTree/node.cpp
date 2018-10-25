@@ -44,7 +44,7 @@ node::node(dato a){
 node::node(node a, node b){
 	if(a.isNodeUseful() == false && b.isNodeUseful() == false){
 		min = 0; max = 0; addsUp = 0; quantity = 0;
-		containsData = true;
+		containsData = false;
 	}
 	else if(a.isNodeUseful() == false && b.isNodeUseful() == true){
 		min = b.min;
@@ -140,4 +140,18 @@ bool node::isNodeUseful(){
 }
 void node::setNodeUseful(bool useful){
 	containsData = useful;
+}
+
+ostream & operator<<(ostream &os,const node & n)
+{
+		os<<"( ";
+		os << n.max;
+		os << ", ";
+		os << n.min;
+		os << " )";
+		os << " Cantidad: ";
+		os << n.quantity;
+		os << endl;
+
+	return os;
 }

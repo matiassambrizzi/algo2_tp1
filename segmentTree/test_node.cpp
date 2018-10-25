@@ -102,12 +102,9 @@ int main(void)
         break;
 
       case 'P':
-        cout << "Mínimo: ";
-        cout << test.getMin();
+        cout << "Impirmir Nodo: (Max,Min)";
         cout << endl;
-        cout << "Maximo: ";
-        cout << test.getMax();
-        cout << endl;
+        cout << test;
         break;
 
       case 'R':
