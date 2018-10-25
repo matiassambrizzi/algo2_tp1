@@ -37,7 +37,7 @@ int main(void)
 
 //***********************************TESTE_CLASE_SEGMENT_TREE*****************************//
   array <dato> v;
-
+  
   int n = 6;
   for(double i = 0;i < n;i++)
     v.push_back(i);
