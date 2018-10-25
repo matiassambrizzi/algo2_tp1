@@ -29,7 +29,7 @@ public:
                     ~sensorNetwork();
 void                process_input_file(istream &iss);
 void                process_query(istream &,ostream &);
-void                process_query2(istream &,ostream &);
+void                process_query_tree(istream &,ostream &);
 int                 get_quantity() const;
 array <sensor>      get_network() const;
 sensor              get_sensor(const int) const;

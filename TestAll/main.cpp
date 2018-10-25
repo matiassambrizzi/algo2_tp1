@@ -45,8 +45,7 @@ int main(int argc, char *argv[]){
 	//Carga de datos a la red de sensores
 	test.process_input_file(*iss_data);
 	test.buildSegmentTrees();
-	test.process_query2(*iss,*oss);
-
+	test.process_query_tree(*iss,*oss);
 
 	return OK;
 }
@@ -71,6 +70,7 @@ static void opt_input(string const &arg)
 		print_error(ERROR_OPENING_INPUT_FILE);
 		exit(1);
 	}
+
 }
 
 static void opt_output(string const &arg)
@@ -104,6 +104,8 @@ static void opt_data(string const &arg)
 		print_error(ERROR_OPENING_INPUT_FILE);
 		exit(1);
 	}
+
+
 }
 
 static void opt_help(string const &arg)

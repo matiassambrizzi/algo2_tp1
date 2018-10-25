@@ -1,24 +1,2 @@
-CPU Package,100,300
-CPU,3,50
-Motherboard,3,50
-GPU Thermal Diode,2,3
-CPU Package,100,300
-CPU,3,5
-Motherboard,3,50
-GPU Thermal Diode,2,3
-CPU Package,100,300
-CPU,3,50
-Motherboard,3,50
-GPU Thermal Diode,2,3
-CPU Package,100,300
-CPU,3,5
-Motherboard,3,50
-GPU Thermal Diode,2,3
-CPU Package,100,300
-CPU,3,50
-Motherboard,3,50
-GPU Thermal Diode,2,3
-CPU Package,100,300
-CPU,3,5
-Motherboard,3,50
-GPU Thermal Diode,2,3
+CPU,  0 , 1
+GPU Thermal Diode,1,2

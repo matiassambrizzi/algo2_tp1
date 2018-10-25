@@ -144,14 +144,15 @@ void node::setNodeUseful(bool useful){
 
 ostream & operator<<(ostream &os,const node & n)
 {
-		os<<"( ";
-		os << n.max;
-		os << ", ";
-		os << n.min;
-		os << " )";
-		os << " Cantidad: ";
-		os << n.quantity;
-		os << endl;
+	
+	os<<n.addsUp/n.quantity;
+	os<<DELIM;
+	os<<n.min;
+	os<<DELIM;
+	os<<n.max;
+	os<<DELIM;
+	os<<n.quantity;
+	os<<endl;
 
 	return os;
 }

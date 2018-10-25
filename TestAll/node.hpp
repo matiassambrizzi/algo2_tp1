@@ -4,6 +4,8 @@
 
 using namespace std;
 
+#define   DELIM             ", "
+
 class node{
 public:
 				node();

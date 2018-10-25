@@ -1,10 +1,14 @@
 CCFLAGS = -Wall -g
 CC = g++
-EXE = tp0
+EXE = tp1
+EXE_TEST_NODE = testNode
+EXE_TEST_SEGMENT = testSegment
+EXE_TEST_SENSOR = testSensor
 
-all: tp0 clean
 
-tp0: main.obj errors.obj	array.obj cmdline.obj	sensor.obj	sensor_network.obj 	dato.obj node.obj segmentTree.obj 	#Los Objetos
+all: tp1 clean
+
+tp1: main.obj errors.obj	array.obj cmdline.obj	sensor.obj	sensor_network.obj 	dato.obj node.obj segmentTree.obj 	#Los Objetos
 	$(CC) $(CCFLAGS) -o $(EXE) main.obj errors.obj array.obj cmdline.obj sensor.obj sensor_network.obj dato.obj node.obj segmentTree.obj
 
 #*****************************TESTEO_CLASE_NODO****************************************#
@@ -19,7 +23,7 @@ testSegmentTree:	test_segment_tree.obj dato.obj array.obj node.obj segmentTree.o
 testSensor:	test_sensor.obj dato.obj array.obj node.obj segmentTree.obj sensor.obj
 	$(CC) $(CCFLAGS) -o $(EXE_TEST_SENSOR) test_sensor.obj dato.obj array.obj node.obj segmentTree.obj sensor.obj
 
-	#*****************************ARCHIVOS.OBJ*********************************************#
+#*****************************ARCHIVOS.OBJ*********************************************#
 test_sensor.obj: test_sensor.cpp
 		$(CC) $(CCFLAGS)  -c test_sensor.cpp -o test_sensor.obj
 
@@ -59,8 +63,17 @@ errors.obj: errors.cpp errors.hpp
 test:
 	./$(EXE) -d CPU_Temp.csv -i Consultas_CPU_temp.csv -o -
 
+run_node_test:
+	./$(EXE_TEST_NODE)
+
+run_segment_test:
+	./$(EXE_TEST_SEGMENT)
+
+run_sensor_test:
+	./$(EXE_TEST_SENSOR)
+
 testValgrind:
-	valgrind --leak-check=full ./$(EXE) -d DataSinBarraR.csv -i Consultas_CPU_temp.csv -o -
+	valgrind --leak-check=full ./$(EXE) -d CPU_Temp.csv -i Consultas_CPU_temp.csv -o -
 
 clean:
 	rm *.obj

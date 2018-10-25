@@ -69,7 +69,12 @@ void sensorNetwork::process_input_file(istream &iss)
   string sd;
   //Leo la primera linea, y me fijo cuantos sensores tengo
   //Guardo los nombres
+
+
   getline(iss,s,'\n');
+
+  if(s.empty())
+    return;
 
   size_t posr = s.find('\r');
   if(posr != string::npos)      //Con esto se soluciona lo del '\r'
@@ -247,7 +252,7 @@ void sensorNetwork::buildSegmentTrees(){
 }
 
 
-void sensorNetwork::process_query2(istream &iss, ostream &oss)
+void sensorNetwork::process_query_tree(istream &iss, ostream &oss)
 {
   //Aca se van procesando las consultas, a medidad que van llegando
   //se procesa y se imprime, luego se pasa a otra consulta
@@ -257,7 +262,6 @@ void sensorNetwork::process_query2(istream &iss, ostream &oss)
   string limits;
 
   int init=0, end=0, j=0;
-  //double min=0, max=0, mean=0;
 
   while(getline(iss,s,'\n') && (!iss.eof()))
   {
@@ -285,11 +289,31 @@ void sensorNetwork::process_query2(istream &iss, ostream &oss)
           oss << NO_DATA_MSG << endl;
         else{
           node aux_node = network[j].queryTree(0, 1, sizeRound(get_sensor_data_size(j)), init+1, end);
-          cout << aux_node;
-
+          if((aux_node.isNodeUseful()) == false)
+            oss << NO_DATA_MSG << endl;
+          else
+            cout << aux_node;
         }
       }
+      else if(j == quantity && (!name.compare("")))
+      {
+        if((this -> get_sensor_data_size(0))-1 < init)  //Me fijo si el primer sensor guradado en la red supera el rango
+        {                                               //y asumo q los otros tambien lo superan.
+          oss << NO_DATA_MSG << endl;
+        }
+        else
+        {
+          sensor mega = this->merge_beta(init,end);
+          mega.loadTree();
 
+          node aux_node1 = mega.queryTree(0, 1, sizeRound((mega.get_data()).get_size()), init+1, end);
+          if((aux_node1.isNodeUseful()) == false)
+            oss << NO_DATA_MSG << endl;
+          else
+            cout << aux_node1;
+        }
+
+      }
       else{
         oss<<UNKNOWN_ID_MSG<<endl;
       }
