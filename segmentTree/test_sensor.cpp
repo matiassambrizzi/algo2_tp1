@@ -63,7 +63,7 @@ int main (void)
         cout << endl;
         int init,end;
         if(cin >> init && cin >> end){
-          aux_node = s.queryTree(0,0,16,init,end-1);
+          aux_node = s.queryTree(0,0,14,init,end-1);
         }
         cout << "Consulta: ";
         cout << aux_node;

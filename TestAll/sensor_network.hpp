@@ -4,6 +4,8 @@
 #include <iostream>
 #include "array.hpp"
 #include "sensor.hpp"
+#include "node.hpp"
+#include "segmentTree.hpp"
 
 using namespace std;
 
@@ -27,6 +29,7 @@ public:
                     ~sensorNetwork();
 void                process_input_file(istream &iss);
 void                process_query(istream &,ostream &);
+void                process_query2(istream &,ostream &);
 int                 get_quantity() const;
 array <sensor>      get_network() const;
 sensor              get_sensor(const int) const;
@@ -34,7 +37,8 @@ friend ostream & operator<<(ostream &os,const sensorNetwork & s);
 int                 get_sensor_data_size(int i) const;
 double              get_sensor_network_mean_instant(int in);
 sensor              merge_beta(int, int &);
-
+void	              buildSegmentTrees();
+int                 sizeRound(int lengthData);
 };
 
 

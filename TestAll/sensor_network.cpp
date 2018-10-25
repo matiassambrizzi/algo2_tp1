@@ -5,6 +5,8 @@
 #include "array.hpp"
 #include "sensor.hpp"
 #include "dato.hpp"
+#include "node.hpp"
+#include "segmentTree.hpp"
 
 using namespace std;
 
@@ -236,4 +238,73 @@ sensor sensorNetwork::merge_beta(int init, int &end){
   sensor auxSensor("",aux); //Crea un sensor auxiliar
 
   return auxSensor;
+}
+
+void sensorNetwork::buildSegmentTrees(){
+  for(int i = 0; i<quantity;i++){
+    network[i].loadTree();
+  }
+}
+
+
+void sensorNetwork::process_query2(istream &iss, ostream &oss)
+{
+  //Aca se van procesando las consultas, a medidad que van llegando
+  //se procesa y se imprime, luego se pasa a otra consulta
+
+  string s;
+  string name;
+  string limits;
+
+  int init=0, end=0, j=0;
+  //double min=0, max=0, mean=0;
+
+  while(getline(iss,s,'\n') && (!iss.eof()))
+  {
+    if(s == "\r")
+      continue;
+    stringstream str_is(s);
+    getline(str_is,name,',');
+    getline(str_is,limits,',');
+    stringstream str(limits);
+    getline(str_is,limits,',');
+    stringstream str1(limits);
+
+    if(!(str >> init) || !(str1 >> end) || (end <= init) || (end < 0) || (init<0))
+    {
+      oss<<BAD_QUERY_MSG<<endl;
+    }
+    else
+    {
+      end = end - 1; //end-1 para que el intervalo que evalue sea abierto
+      for(j = 0;(j < quantity) && name.compare(network[j].get_name());j++); //Esto me devuelve en j el numero del sensor
+                                                                            //Correspondiente
+      if(j != quantity) //Si j es distinto a la cantidad, entonces, el sensor de consulta está en la red.
+      {
+        if(get_sensor_data_size(j)-1 < init)
+          oss << NO_DATA_MSG << endl;
+        else{
+          node aux_node = network[j].queryTree(0, 0, sizeRound(get_sensor_data_size(j)), init, end);
+          cout << aux_node;
+
+        }
+      }
+
+      else{
+        oss<<UNKNOWN_ID_MSG<<endl;
+      }
+    }
+  }
+
+}
+
+int sensorNetwork::sizeRound(int lengthData){
+  int f = 2;
+  int i=1;
+  while(i < lengthData){ //calculo la potencia de dos correspondiente
+    i = i*f;
+  }
+  //el segment tree sera de largo 2*i-1, por lo tanto:
+  //i = 2*i -1;
+  return i;
 }

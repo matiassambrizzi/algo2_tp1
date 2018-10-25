@@ -1,68 +1,114 @@
 #include <iostream>
+#include <fstream>
+#include <string>
+#include <sstream>
+#include <cstdlib>
+
+#include "main.hpp"
+#include "cmdline.hpp"
+#include "types.hpp"
+#include "errors.hpp"
 #include "array.hpp"
 #include "sensor.hpp"
+#include "sensor_network.hpp"
 #include "dato.hpp"
 #include "node.hpp"
 #include "segmentTree.hpp"
 
 using namespace std;
 
-void display_attribute(node );
-void print_tree_max(segmentTree test);
+//Opciones globales
+static option_t options[] = {
+	{1, "d", "data", NULL, opt_data, OPT_MANDATORY},
+	{1, "i", "input", "-", opt_input, OPT_MANDATORY},
+	{1, "o", "output", "-", opt_output, OPT_DEFAULT},
+	{0, "h", "help", NULL, opt_help, OPT_DEFAULT},
+	{0, },
+};
 
-//*************************TEST_NODE_SEGMENTTREE***************************************//
-//En este archivo se realiza el testeo tanto de la clase nodo como el de SegmentTree.
-//En principio se realizan las pruebas por separado, luego se inculirá un menú para
-//poder elegir el testeo se re requiera.
-//************************************************************************************+//
+static istream *iss = 0;
+static istream *iss_data = 0;
+static ostream *oss = 0;
+static fstream ifs;
+static fstream ifs_data;
+static fstream ofs;
 
-int main(void)
-{
+int main(int argc, char *argv[]){
 
-//***********************************TESTE_CLASE_NODO+++++++*****************************//
-/*
-  cout << "Se crea un nodo con el contructor por defecto" << endl;
-  node test_node;
-  display_attribute(test_node);
+	//Vavidaciones CLA
+	cmdline cmdl(options);
+	cmdl.parse(argc, argv);
+	//Fin Validacioon
 
-  cout << "Testeo del constructor con dos double" << endl;
-  node test_node1(1,2);
-  display_attribute(test_node1);
+	sensorNetwork test;
 
-  cout << "Constructor apartir de un dato" << endl;
-  dato uno(1,true);
-  node test_node2(uno);
-  display_attribute(test_node2);
-*/
+	//Carga de datos a la red de sensores
+	test.process_input_file(*iss_data);
+	test.buildSegmentTrees();
+	test.process_query2(*iss,*oss);
 
-//***********************************TESTE_CLASE_SEGMENT_TREE*****************************//
-  array <dato> v;
-  
-  int n = 6;
-  for(double i = 0;i < n;i++)
-    v.push_back(i);
 
-  cout << v << endl;
-  segmentTree test(v,n);
-
-  int m = test.treeSize(n);
-  for(int i = 0;i <(2*m)-1;i++)
-    display_attribute(test.getNode(i));
-
-  return 0;
+	return OK;
 }
 
 
-void display_attribute(node test_node)
+static void opt_input(string const &arg)
 {
-  double max = test_node.getMax();
-  double min = test_node.getMin();
-  double adds = test_node.getAddsUp();
-  double quant = test_node.getQuantity();
 
-  cout << "Se muestran por pantalla los atributos" << endl;
-  cout << "El mínimo es: " << min << "\t";
-  cout << "El máximo es: " << max << endl;
-  cout << "AddsUp: " << adds << endl;
-  cout << "La cantidad: " << quant << endl;
+	if (arg == "-") {
+		iss = &cin;		// Establezco la entrada estandar cin como flujo de entrada
+	}
+	else {
+		ifs.open(arg.c_str(), ios::in); // c_str(): Returns a pointer to an array that contains a null-terminated
+										// sequence of characters (i.e., a C-string) representing
+										// the current value of the string object.
+		iss = &ifs;
+	}
+
+	// Verificamos que el stream este OK.
+	//
+	if (!iss->good()) {
+		print_error(ERROR_OPENING_INPUT_FILE);
+		exit(1);
+	}
+}
+
+static void opt_output(string const &arg)
+{
+
+	if (arg == "-") {
+		oss = &cout;	// Establezco la salida estandar cout como flujo de salida
+	} else {
+		ofs.open(arg.c_str(), ios::out);
+		oss = &ofs;
+	}
+
+	// Verificamos que el stream este OK.
+	//
+	if (!oss->good()) {
+		print_error(ERROR_OPENING_OUTPUT_FILE);
+		exit(1);
+	}
+}
+
+
+static void opt_data(string const &arg)
+{
+
+	ifs_data.open(arg.c_str(), ios::in); // c_str(): Returns a pointer to an array that contains a null-terminated
+										// sequence of characters (i.e., a C-string) representing
+										// the current value of the string object.
+		iss_data = &ifs_data;
+
+	if (!iss_data->good()) {
+		print_error(ERROR_OPENING_INPUT_FILE);
+		exit(1);
+	}
+}
+
+static void opt_help(string const &arg)
+{
+	//Imprimo por pantalla como invocar el programa
+	cout << HELP_MSG << endl;
+	exit(0);
 }
