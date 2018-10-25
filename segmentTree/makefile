@@ -12,6 +12,12 @@ segmentTree: main.obj array.obj sensor.obj dato.obj segmentTree.obj node.obj
 testNode: test_node.obj dato.obj array.obj node.obj
 	$(CC) $(CCFLAGS) -o $(EXE_TEST_NODE) test_node.obj dato.obj array.obj node.obj
 
+testSegmentTree:	test_segment_tree.obj dato.obj array.obj node.obj
+	$(CC) $(CCFLAGS) -o $(EXE_TEST_NODE) test_segment_tree.obj dato.obj array.obj node.obj
+
+test_segment_tree.obj: test_segment_tree.cpp
+	$(CC) $(CCFLAGS)  -c test_segment_tree.cpp -o test_segment_tree.obj
+	
 test_node.obj: test_node.cpp
 	$(CC) $(CCFLAGS)  -c test_node.cpp -o test_node.obj
 
