@@ -41,9 +41,12 @@ int main(int argc, char *argv[]){
 	//Fin Validacioon
 
 	sensorNetwork test;
-
+	status_t st;
 	//Carga de datos a la red de sensores
-	test.process_input_file(*iss_data);
+	if((st = test.process_input_file(*iss_data))!= OK){
+		print_error(st);
+		return OK;
+	}
 	test.buildSegmentTrees();
 	test.process_query_tree(*iss,*oss);
 

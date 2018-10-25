@@ -10,8 +10,7 @@ const char *errors[MAX_ERRORS] = {
 	ERROR_MSG_EMPTY_FILE
 };
 
-status_t print_error(status_t st)
+void print_error(status_t st)
 {
 	cerr << errors[st] << endl;
-	return OK;
 }

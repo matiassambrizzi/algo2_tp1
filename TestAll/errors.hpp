@@ -9,6 +9,6 @@
 #define ERROR_MSG_OPENING_OUTPUT_FILE 		"Error abriendo archivo de entrada"
 #define ERROR_MSG_EMPTY_FILE              "Archivo de entrada vacio"
 
-status_t print_error(status_t st);
+void print_error(status_t st);
 
 #endif

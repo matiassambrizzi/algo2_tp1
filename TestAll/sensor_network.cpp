@@ -59,7 +59,7 @@ ostream & operator<<(ostream &os,const sensorNetwork & s)
   return os;
 }
 
-void sensorNetwork::process_input_file(istream &iss)
+status_t sensorNetwork::process_input_file(istream &iss)
 {
   //Esta funcion carga los datos de un archivo a la red de
   //sensores
@@ -74,7 +74,7 @@ void sensorNetwork::process_input_file(istream &iss)
   getline(iss,s,'\n');
 
   if(s.empty())
-    return;
+    return ERROR_EMPTY_FILE;
 
   size_t posr = s.find('\r');
   if(posr != string::npos)      //Con esto se soluciona lo del '\r'
@@ -127,7 +127,7 @@ void sensorNetwork::process_input_file(istream &iss)
 
   network = pr.network;
   quantity = pr.quantity;
-
+  return OK;
 }
 
 int sensorNetwork::get_sensor_data_size(int i) const

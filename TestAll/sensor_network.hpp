@@ -6,6 +6,8 @@
 #include "sensor.hpp"
 #include "node.hpp"
 #include "segmentTree.hpp"
+#include "errors.hpp"
+#include "types.hpp"
 
 using namespace std;
 
@@ -27,7 +29,7 @@ public:
                     sensorNetwork(const sensorNetwork &);
                     sensorNetwork(int n);
                     ~sensorNetwork();
-void                process_input_file(istream &iss);
+status_t                process_input_file(istream &iss);
 void                process_query(istream &,ostream &);
 void                process_query_tree(istream &,ostream &);
 int                 get_quantity() const;
