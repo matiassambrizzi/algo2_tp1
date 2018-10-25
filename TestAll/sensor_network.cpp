@@ -276,7 +276,7 @@ void sensorNetwork::process_query2(istream &iss, ostream &oss)
     }
     else
     {
-      end = end - 1; //end-1 para que el intervalo que evalue sea abierto
+      //end = end - 1; //end-1 para que el intervalo que evalue sea abierto
       for(j = 0;(j < quantity) && name.compare(network[j].get_name());j++); //Esto me devuelve en j el numero del sensor
                                                                             //Correspondiente
       if(j != quantity) //Si j es distinto a la cantidad, entonces, el sensor de consulta está en la red.
@@ -284,7 +284,7 @@ void sensorNetwork::process_query2(istream &iss, ostream &oss)
         if(get_sensor_data_size(j)-1 < init)
           oss << NO_DATA_MSG << endl;
         else{
-          node aux_node = network[j].queryTree(0, 0, sizeRound(get_sensor_data_size(j)), init, end);
+          node aux_node = network[j].queryTree(0, 1, sizeRound(get_sensor_data_size(j)), init+1, end);
           cout << aux_node;
 
         }
