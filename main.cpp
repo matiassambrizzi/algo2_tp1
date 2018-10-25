@@ -12,6 +12,8 @@
 #include "sensor.hpp"
 #include "sensor_network.hpp"
 #include "dato.hpp"
+#include "node.hpp"
+#include "segmentTree.hpp"
 
 using namespace std;
 
