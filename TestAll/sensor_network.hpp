@@ -13,8 +13,6 @@ using namespace std;
 
 #define   BAD_QUERY_MSG     "BAD QUERY"
 #define   UNKNOWN_ID_MSG    "UnknownID"
-#define   NO_DATA_MSG       "NO DATA"
-#define   DELIM             ", "
 
 class sensorNetwork{
 
@@ -37,7 +35,7 @@ array <sensor>      get_network() const;
 sensor              get_sensor(const int) const;
 friend ostream & operator<<(ostream &os,const sensorNetwork & s);
 int                 get_sensor_data_size(int i) const;
-double              get_sensor_network_mean_instant(int in);
+dato              get_sensor_network_mean_instant(int in);
 sensor              merge_beta(int, int &);
 void	              buildSegmentTrees();
 int                 sizeRound(int lengthData);

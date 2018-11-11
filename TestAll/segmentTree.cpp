@@ -14,7 +14,7 @@ segmentTree::segmentTree(){
 //Este contructor recibe un array de datos y la cantidad
 //Si la cantidad no es multiplo de 2^n se agregaran datos
 //inválidos para poder generar un arbol binario completo
-segmentTree::segmentTree(array <dato> arr, double quant)
+segmentTree::segmentTree(array <dato> & arr, double quant)
 {
 
 	int q = treeSize(quant);
@@ -63,7 +63,7 @@ node segmentTree::getNode(int n)
 //************************************ARMAR_ARBOL*****************************************//
 //La funcion tiene como parámetros un array, un index que se corresponde con el nodo al que
 //pertenece el dato y el inicio y fin del array que se esta evaluando
-void segmentTree::buildSegmentTree(array <dato> d,double index,double init,double final)
+void segmentTree::buildSegmentTree(array <dato> & d,double index,double init,double final)
 {
 	//********CASO_BASE*****************//
 	if(init == final)

@@ -203,7 +203,7 @@ void sensorNetwork::process_query(istream &iss, ostream &oss)
 
 }
 
-double  sensorNetwork::get_sensor_network_mean_instant(int in)
+dato  sensorNetwork::get_sensor_network_mean_instant(int in)
 //Esto hay que cambiarlo para que no tenga en cuenta los datos invalidos
 {
 //Esta funcion devuelve el promedio de algun instante "in"
@@ -213,7 +213,7 @@ double  sensorNetwork::get_sensor_network_mean_instant(int in)
     double aux = 0;
     int auxQuant = quantity;
     double validation;
-
+    
     for(int i = 0;i<quantity;i++){
       if(!(network[i].get_data_value(in,validation))) //Si el valor es inválido, entonces, no lo tengo
       {                                                                 //en cuenta para el promedio
@@ -223,8 +223,14 @@ double  sensorNetwork::get_sensor_network_mean_instant(int in)
 
       aux += validation;
     }
-
-    return aux/(auxQuant);
+    if(auxQuant ==0){
+      dato mean(0, false);
+      return mean;
+    }
+    else{
+      dato mean(aux/auxQuant, true);
+      return mean;
+    }
 }
 
 sensor sensorNetwork::merge_beta(int init, int &end){
@@ -234,9 +240,9 @@ sensor sensorNetwork::merge_beta(int init, int &end){
   array <dato> aux; //Array auxiliar
 
   if((this -> get_sensor_data_size(0))-1 < end) //Si la cota superior es mayor a la cantidad de detos
-    end = (this -> get_sensor_data_size(0))-1;  //Ahora la cota superior es la cantidad de deatos
+    end = (this -> get_sensor_data_size(0))-1;  //Ahora la cota superior es la cantidad de daatos
 
-  for(int i = 0;i<=end;i++){ //Guarda en un sensor auxiliar los pormedios de los instantes 0 a end
+  for(int i = 0;i<=end;i++){ //Guarda en un sensor auxiliar los promedios de los instantes 0 a end
     aux.push_back(this->get_sensor_network_mean_instant(i));
   }
 
@@ -288,7 +294,11 @@ void sensorNetwork::process_query_tree(istream &iss, ostream &oss)
         if(get_sensor_data_size(j)-1 < init)
           oss << NO_DATA_MSG << endl;
         else{
-          node aux_node = network[j].queryTree(0, 1, sizeRound(get_sensor_data_size(j)), init+1, end);
+          int length = sizeRound(get_sensor_data_size(j));
+          if(end>length){
+            end  = length;
+          }
+          node aux_node = network[j].queryTree(0, 1, length, init+1, end);
           if((aux_node.isNodeUseful()) == false)
             oss << NO_DATA_MSG << endl;
           else
@@ -303,10 +313,14 @@ void sensorNetwork::process_query_tree(istream &iss, ostream &oss)
         }
         else
         {
-          sensor mega = this->merge_beta(init,end);
+          int lengthMega = this->get_sensor_data_size(0);
+          sensor mega = this->merge_beta(0,lengthMega);
           mega.loadTree();
-
-          node aux_node1 = mega.queryTree(0, 1, sizeRound((mega.get_data()).get_size()), init+1, end);
+          int length = sizeRound(lengthMega);
+          if(end>length){
+            end  = length;
+          }
+          node aux_node1 = mega.queryTree(0, 1, length, init+1, end);
           if((aux_node1.isNodeUseful()) == false)
             oss << NO_DATA_MSG << endl;
           else

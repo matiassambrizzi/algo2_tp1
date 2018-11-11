@@ -4,8 +4,8 @@
 
 using namespace std;
 
+#define   NO_DATA_MSG       "NO DATA"
 #define   DELIM             ", "
-
 class node{
 public:
 				node();

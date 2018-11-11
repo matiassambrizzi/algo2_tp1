@@ -4,7 +4,7 @@
 
 using namespace std;
 
-#define 		DEFAULT_ALLOC_SIZE		1
+#define 		DEFAULT_ALLOC_SIZE			1
 #define 		ARRAY_GROWTH_RATE			2
 
 template <class T>
