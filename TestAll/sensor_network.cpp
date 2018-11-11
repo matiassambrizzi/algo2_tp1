@@ -213,7 +213,7 @@ dato  sensorNetwork::get_sensor_network_mean_instant(int in)
     double aux = 0;
     int auxQuant = quantity;
     double validation;
-    
+
     for(int i = 0;i<quantity;i++){
       if(!(network[i].get_data_value(in,validation))) //Si el valor es inválido, entonces, no lo tengo
       {                                                                 //en cuenta para el promedio
@@ -298,7 +298,8 @@ void sensorNetwork::process_query_tree(istream &iss, ostream &oss)
           if(end>length){
             end  = length;
           }
-          node aux_node = network[j].queryTree(0, 1, length, init+1, end);
+          //node aux_node = network[j].queryTree(0, 1, length, init+1, end);
+          node aux_node = network[j].queryTree(0, 0, length-1, init, end);
           if((aux_node.isNodeUseful()) == false)
             oss << NO_DATA_MSG << endl;
           else
@@ -320,7 +321,8 @@ void sensorNetwork::process_query_tree(istream &iss, ostream &oss)
           if(end>length){
             end  = length;
           }
-          node aux_node1 = mega.queryTree(0, 1, length, init+1, end);
+          //node aux_node1 = mega.queryTree(0, 1, length, init+1, end);
+          node aux_node1 = mega.queryTree(0, 0, length-1, init, end);
           if((aux_node1.isNodeUseful()) == false)
             oss << NO_DATA_MSG << endl;
           else

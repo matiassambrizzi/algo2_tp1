@@ -3,6 +3,7 @@
 #include <string>
 #include <sstream>
 #include <cstdlib>
+#include <ctime>
 
 #include "main.hpp"
 #include "cmdline.hpp"
@@ -43,12 +44,24 @@ int main(int argc, char *argv[]){
 	sensorNetwork test;
 	status_t st;
 	//Carga de datos a la red de sensores
+	cout << "Procesando datos....";
 	if((st = test.process_input_file(*iss_data))!= OK){
 		print_error(st);
 		return OK;
 	}
+	cout << ".....Ok" << endl;
+
+	cout << "Armando arboles....";
 	test.buildSegmentTrees();
+	cout << ".....Ok" << endl;
+
+	clock_t begin = clock();
 	test.process_query_tree(*iss,*oss);
+	//test.process_query(*iss,*oss);
+
+	clock_t end = clock();
+  double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
+  cout<<"Tiempo de procesamiento: "<<elapsed_secs<<" s."<<endl;
 
 	return OK;
 }

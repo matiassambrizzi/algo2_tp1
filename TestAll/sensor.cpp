@@ -122,7 +122,7 @@ bool sensor::get_data_value(int pos,double &val){
 
 
 node sensor::queryTree(int stIndex, int left, int right, int lo, int hi) {
-  if (left == lo && right == hi)
+  if (left >= lo && right <= hi)
     return tree[stIndex];
 
   int mid = (left + right) / 2;

@@ -63,6 +63,9 @@ errors.obj: errors.cpp errors.hpp
 test:
 	./$(EXE) -d CPU_Temp.csv -i Consultas_CPU_temp.csv -o -
 
+testTiempo:
+	./$(EXE) -d mediciones.txt -i querys.txt -o -
+
 run_node_test:
 	./$(EXE_TEST_NODE)
 

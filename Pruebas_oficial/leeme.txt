@@ -1,0 +1,7 @@
+cada carpeta coniene los archivos de prueba
+para ejecutarlos usar el archvo .sh
+cambiarle los permisos 
+chmod +x test.sh
+./test.sh
+
+aveces hay que mandarle algun archivo como parametro
