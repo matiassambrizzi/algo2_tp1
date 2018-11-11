@@ -299,11 +299,11 @@ void sensorNetwork::process_query_tree(istream &iss, ostream &oss)
             end  = length;
           }
           //node aux_node = network[j].queryTree(0, 1, length, init+1, end);
-          node aux_node = network[j].queryTree(0, 0, length-1, init, end);
+          node aux_node = network[j].queryTree(0, 0, length-1, init, end-1);
           if((aux_node.isNodeUseful()) == false)
             oss << NO_DATA_MSG << endl;
           else
-            cout << aux_node;
+            oss << aux_node;
         }
       }
       else if(j == quantity && (!name.compare("")))
@@ -322,7 +322,7 @@ void sensorNetwork::process_query_tree(istream &iss, ostream &oss)
             end  = length;
           }
           //node aux_node1 = mega.queryTree(0, 1, length, init+1, end);
-          node aux_node1 = mega.queryTree(0, 0, length-1, init, end);
+          node aux_node1 = mega.queryTree(0, 0, length-1, init, end-1);
           if((aux_node1.isNodeUseful()) == false)
             oss << NO_DATA_MSG << endl;
           else

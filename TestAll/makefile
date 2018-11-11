@@ -5,7 +5,6 @@ EXE_TEST_NODE = testNode
 EXE_TEST_SEGMENT = testSegment
 EXE_TEST_SENSOR = testSensor
 
-
 all: tp1 clean
 
 tp1: main.obj errors.obj	array.obj cmdline.obj	sensor.obj	sensor_network.obj 	dato.obj node.obj segmentTree.obj 	#Los Objetos
@@ -64,7 +63,7 @@ test:
 	./$(EXE) -d CPU_Temp.csv -i Consultas_CPU_temp.csv -o -
 
 testTiempo:
-	./$(EXE) -d mediciones.txt -i querys.txt -o -
+	./$(EXE) -d mediciones.txt -i querys.txt -o salidaTiempo.txt
 
 run_node_test:
 	./$(EXE_TEST_NODE)

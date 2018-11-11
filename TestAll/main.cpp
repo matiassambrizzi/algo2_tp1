@@ -44,16 +44,16 @@ int main(int argc, char *argv[]){
 	sensorNetwork test;
 	status_t st;
 	//Carga de datos a la red de sensores
-	cout << "Procesando datos....";
+	*oss << "Procesando datos....";
 	if((st = test.process_input_file(*iss_data))!= OK){
 		print_error(st);
 		return OK;
 	}
-	cout << ".....Ok" << endl;
+	*oss << ".....Ok" << endl;
 
-	cout << "Armando arboles....";
+	*oss << "Armando arboles....";
 	test.buildSegmentTrees();
-	cout << ".....Ok" << endl;
+	*oss << ".....Ok" << endl;
 
 	clock_t begin = clock();
 	test.process_query_tree(*iss,*oss);
@@ -61,7 +61,17 @@ int main(int argc, char *argv[]){
 
 	clock_t end = clock();
   double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
-  cout<<"Tiempo de procesamiento: "<<elapsed_secs<<" s."<<endl;
+
+	ifs.clear();
+	ifs.seekg(0, ifs.beg);
+
+	clock_t begin2 = clock();
+	test.process_query(*iss,*oss);
+	clock_t end2 = clock();
+  double elapsed_secs2 = double(end2 - begin2) / CLOCKS_PER_SEC;
+
+	*oss<<"TP1:Tiempo de procesamiento: "<<elapsed_secs<<" s."<<endl;
+  *oss<<"TPO:Tiempo de procesamiento: "<<elapsed_secs2<<" s."<<endl;
 
 	return OK;
 }
