@@ -60,7 +60,7 @@ int main(int argc, char *argv[]){
 	//test.process_query(*iss,*oss);
 
 	clock_t end = clock();
-  double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
+  	double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
 
 	ifs.clear();
 	ifs.seekg(0, ifs.beg);
@@ -68,10 +68,10 @@ int main(int argc, char *argv[]){
 	clock_t begin2 = clock();
 	test.process_query(*iss,*oss);
 	clock_t end2 = clock();
-  double elapsed_secs2 = double(end2 - begin2) / CLOCKS_PER_SEC;
+  	double elapsed_secs2 = double(end2 - begin2) / CLOCKS_PER_SEC;
 
 	*oss<<"TP1:Tiempo de procesamiento: "<<elapsed_secs<<" s."<<endl;
-  *oss<<"TPO:Tiempo de procesamiento: "<<elapsed_secs2<<" s."<<endl;
+  	*oss<<"TPO:Tiempo de procesamiento: "<<elapsed_secs2<<" s."<<endl;
 
 	return OK;
 }
