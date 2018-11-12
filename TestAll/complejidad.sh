@@ -1,3 +1,8 @@
+#Archivo para generar pruebas de complejidad. Primero, correr el archivo generate_med_querys.m.
+#con eso, generar varios archivos de mediciones con sus consultas. Luego, correr este script para
+#quedarse con los tiempo de ejecucion que se guardan en el archivo "complejidad.txt"
+#Salu2
+
 echo -e '\e[1;41mComplejidad Algoritmica\e[0m:'
 
 rm salida.txt
